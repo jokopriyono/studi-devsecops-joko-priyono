@@ -21,7 +21,7 @@ jobs:
           wget -q -O- https://semgrep.dev/install.sh | sh
 
       - name: Run Semgrep scan
-        run: semgrep --config=p/security-audit <directory-to-scan> --json > sast_results.json
+        run: semgrep --config=p/security-audit . --json > sast_results.json
 
       - name: Store scan results as artifact
         uses: actions/upload-artifact@v2

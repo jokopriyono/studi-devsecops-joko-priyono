@@ -1,0 +1,10 @@
+{
+  "name": "authentication-test-server",
+  "version": "0.0.1",
+  "main": "appB.js",
+  "dependencies" : {
+    "express" : "4.1",
+    "bcrypt-nodejs" : "latest",
+    "request" : "latest"
+  }
+}
