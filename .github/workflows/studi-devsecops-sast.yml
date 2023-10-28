@@ -1,7 +1,6 @@
 name: Static Analysis with Semgrep (SAST)
 
 on:
-  pull_request: {}
   push:
     branches:
       - develop
