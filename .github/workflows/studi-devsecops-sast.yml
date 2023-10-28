@@ -20,11 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Semgrep
-        run: |
-          wget -q -O semgrep.sh https://semgrep.dev/install.sh
-          sudo bash semgrep.sh
-
       - name: Run Semgrep scan
         run: semgrep --config=p/security-audit . --json > sast_results.json
 
