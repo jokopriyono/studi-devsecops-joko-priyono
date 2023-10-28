@@ -14,18 +14,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Semgrep
         run: |
-          curl -L https://semgrep.dev/install.sh > install.sh
-          sudo bash install.sh
+          wget -q -O semgrep.sh https://semgrep.dev/install.sh
+          sudo bash semgrep.sh
 
       - name: Run Semgrep scan
         run: semgrep --config=p/security-audit . --json > sast_results.json
 
       - name: Store scan results as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: sast-results
           path: sast_results.json
