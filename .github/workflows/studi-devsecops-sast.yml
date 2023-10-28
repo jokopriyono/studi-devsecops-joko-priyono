@@ -1,0 +1,30 @@
+name: Static Analysis with Semgrep (SAST)
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Semgrep
+        run: |
+          wget -q -O- https://semgrep.dev/install.sh | sh
+
+      - name: Run Semgrep scan
+        run: semgrep --config=p/security-audit <directory-to-scan> --json > sast_results.json
+
+      - name: Store scan results as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sast-results
+          path: sast_results.json
